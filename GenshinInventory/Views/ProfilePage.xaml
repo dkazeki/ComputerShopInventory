@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GenshinInventory.Views.ProfilePage"
+             Title="Profile"
+             BackgroundColor="#7F98DA">
+
+    <Grid ColumnDefinitions="220,*">
+        <VerticalStackLayout Grid.Column="0"
+                             BackgroundColor="#2F49A8"
+                             Padding="20,40"
+                             Spacing="28">
+
+            <Label Text="COMPUTER SHOP&#10;INVENTORY"
+                   TextColor="#F4E8D5"
+                   FontSize="28"
+                   FontAttributes="Bold" />
+
+            <Button Text="Stocks"
+                    BackgroundColor="Transparent"
+                    TextColor="#F4E8D5"
+                    Clicked="OnStocksClicked" />
+
+            <Button Text="Profile"
+                    BackgroundColor="#D9D9D9"
+                    TextColor="#2F49A8" />
+
+            <Button Text="Log Out"
+                    BackgroundColor="Transparent"
+                    TextColor="#F4E8D5"
+                    Clicked="OnLogoutClicked" />
+        </VerticalStackLayout>
+        <Grid 
+            Grid.Column="1" 
+            RowDefinitions="188,Auto,Auto,*">
+
+            <Border Grid.Row="0"
+                    BackgroundColor="#5F7098"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 0,0,40,40" />
+
+            <VerticalStackLayout Grid.RowSpan="4"
+                                 VerticalOptions="Start"
+                                 HorizontalOptions="Center"
+                                 Margin="0,90,0,0"
+                                 Spacing="18">
+                <Frame WidthRequest="140"
+                       HeightRequest="140"
+                       CornerRadius="70"
+                       BackgroundColor="#2F49A8"
+                       HasShadow="False"
+                       Padding="0"
+                       HorizontalOptions="Center">
+
+                    <Label Text="👤"
+                           FontSize="60"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="White" />
+                </Frame>
+                <VerticalStackLayout 
+                    Spacing="2" 
+                    HorizontalOptions="Center">
+                    <Label x:Name="FullNameLabel"
+                           Text="Admin Name"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#F4E8D5"
+                           HorizontalTextAlignment="Center" />
+
+                    <Label x:Name="UsernameLabel"
+                           Text="@admin"
+                           FontSize="15"
+                           TextColor="#F4E8D5"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+                <VerticalStackLayout 
+                    Spacing="18" 
+                    Margin="0,20,0,0">
+
+                    <Button Text="Edit Profile"
+                            WidthRequest="240"
+                            HeightRequest="55"
+                            CornerRadius="25"
+                            BackgroundColor="#E3D8C8"
+                            TextColor="#2F49A8"
+                            FontSize="18"
+                            Clicked="OnEditProfileClicked" />
+
+                    <Button Text="Change Password"
+                            WidthRequest="240"
+                            HeightRequest="55"
+                            CornerRadius="25"
+                            BackgroundColor="#E3D8C8"
+                            TextColor="#2F49A8"
+                            FontSize="18"
+                            Clicked="OnChangePasswordClicked" />
+
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

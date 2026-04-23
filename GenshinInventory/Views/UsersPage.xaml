@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GenshinInventory.Views.UsersPage"
+             Title="Stocks"
+             BackgroundColor="#8EA6E8">
+
+    <Grid>
+        <Grid ColumnDefinitions="220,*">
+            <VerticalStackLayout Grid.Column="0"
+                                 BackgroundColor="#2F49A8"
+                                 Padding="20,40"
+                                 Spacing="25">
+
+                <Label Text="COMPUTER SHOP&#10;INVENTORY"
+                       TextColor="White"
+                       FontSize="24"
+                       FontAttributes="Bold" />
+
+                <Button Text="Stocks"
+                        BackgroundColor="#D9D9D9"
+                        TextColor="#2F49A8"
+                        CornerRadius="0" />
+
+                <Button Text="Profile"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        Clicked="OnProfileClicked" />
+
+                <Button Text="Log Out"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        Clicked="OnLogoutClicked" />
+            </VerticalStackLayout>
+            <ScrollView Grid.Column="1">
+                <VerticalStackLayout Padding="30,40"
+                                     Spacing="20">
+
+                    <Label Text="Stocks"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <Grid ColumnDefinitions="*,140" ColumnSpacing="15">
+                        <Entry x:Name="SearchEntry"
+                               Placeholder="Search..."
+                               BackgroundColor="#EAEAEA"
+                               TextColor="Black"
+                               TextChanged="OnSearchTextChanged" />
+
+                        <Button Grid.Column="1"
+                                Text="Add Product"
+                                BackgroundColor="#2F49A8"
+                                TextColor="White"
+                                Clicked="OnAddUserClicked" />
+                    </Grid>
+                    <Grid ColumnDefinitions="1.5*,1*,1*,1*,1*,1*,1.2*"
+                          BackgroundColor="#7F98DA"
+                          Padding="10">
+                        <Label Text="PRODUCT NAME" TextColor="White" FontAttributes="Bold" />
+                        <Label Grid.Column="1" Text="CATEGORY" TextColor="White" FontAttributes="Bold" />
+                        <Label Grid.Column="2" Text="BRAND" TextColor="White" FontAttributes="Bold" />
+                        <Label Grid.Column="3" Text="QUANTITY" TextColor="White" FontAttributes="Bold" />
+                        <Label Grid.Column="4" Text="PRICE" TextColor="White" FontAttributes="Bold" />
+                        <Label Grid.Column="5" Text="STATUS" TextColor="White" FontAttributes="Bold" />
+                        <Label Grid.Column="6" Text="ACTIONS" TextColor="White" FontAttributes="Bold" />
+                    </Grid>
+                    <CollectionView x:Name="UsersCollectionView"
+                                    HeightRequest="500">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="1.5*,1*,1*,1*,1*,1*,1.2*"
+                                      BackgroundColor="#92A9E8"
+                                      Padding="10"
+                                      Margin="0,2">
+
+                                    <Label Text="{Binding ProductName}" 
+                                           TextColor="White" />
+                                    <Label Grid.Column="1" 
+                                           Text="{Binding Category}" 
+                                           TextColor="White" />
+                                    <Label Grid.Column="2" 
+                                           Text="{Binding Brand}" 
+                                           TextColor="White" />
+                                    <Label Grid.Column="3" 
+                                           Text="{Binding Quantity}" 
+                                           TextColor="White" />
+                                    <Label Grid.Column="4" 
+                                           Text="{Binding Price, StringFormat='₱{0:N2}'}" 
+                                           TextColor="White" />
+                                    <Label Grid.Column="5" 
+                                           Text="{Binding Status}" 
+                                           TextColor="{Binding StatusColor}" 
+                                           FontAttributes="Bold" 
+                                           HorizontalOptions="Center" />
+
+                                    <HorizontalStackLayout Grid.Column="6" Spacing="8">
+                                        <Button Text="Edit"
+                                                FontSize="12"
+                                                BackgroundColor="Transparent"
+                                                TextColor="White"
+                                                CommandParameter="{Binding Id}"
+                                                Clicked="OnEditUserClicked" />
+
+                                        <Button Text="Delete"
+                                                FontSize="12"
+                                                BackgroundColor="Transparent"
+                                                TextColor="Red"
+                                                CommandParameter="{Binding Id}"
+                                                Clicked="OnDeleteUserClicked" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        <Grid x:Name="PopupOverlay"
+              IsVisible="False"
+              BackgroundColor="#80000000">
+
+            <Frame BackgroundColor="#D9D1C4"
+                   CornerRadius="20"
+                   Padding="20"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   WidthRequest="400">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label x:Name="PopupTitleLabel"
+                           Text="Add Product"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+
+                    <Entry x:Name="ProductNameEntry" 
+                           Placeholder="Product Name" 
+                           TextColor="Black"
+                           Completed="OnProductNameCompleted" />
+                    <Entry x:Name="CategoryEntry" 
+                           Placeholder="Category" 
+                           TextColor="Black"
+                           Completed="OnCategoryCompleted" />
+                    <Entry x:Name="BrandEntry" 
+                           Placeholder="Brand" 
+                           TextColor="Black"
+                           Completed="OnBrandCompleted" />
+                    <Entry x:Name="QuantityEntry" 
+                           Placeholder="Quantity" 
+                           TextColor="Black"
+                           Completed="OnQuantityCompleted"
+                           Keyboard="Numeric" />
+                    <Entry x:Name="PriceEntry" 
+                           Placeholder="Price" 
+                           TextColor="Black" 
+                           Keyboard="Numeric"
+                           ReturnType="Go"
+                           Completed="OnPriceCompleted" />
+
+                    <Button x:Name="SaveButton"
+                            Text="Add Product"
+                            Clicked="OnSaveUserClicked"
+                            BackgroundColor="#2F49A8"
+                            TextColor="White" />
+
+                    <Button Text="Cancel"
+                            Clicked="OnClosePopup"
+                            BackgroundColor="Gray"
+                            TextColor="White" />
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GenshinInventory.Views.LoginPage"
+             Title="Login"
+             BackgroundColor="#2E3A8C">
+
+    <Grid>
+        <VerticalStackLayout
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                Text="COMPUTER SHOP INVENTORY"
+                FontSize="26"
+                TextColor="White"
+                HorizontalOptions="Center"
+                FontAttributes="Bold" />
+
+            <Frame
+                BackgroundColor="#E5E5F0"
+                CornerRadius="25"
+                Padding="25"
+                WidthRequest="300">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="Admin Log in"
+                        FontSize="14"
+                        TextColor="Black"
+                        HorizontalOptions="Center" />
+
+                    <Entry
+                        x:Name="UsernameEntry"
+                        Placeholder="Username"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        Completed="OnUsernameCompleted" />
+
+                    <Entry
+                        x:Name="PasswordEntry"
+                        Placeholder="Password"
+                        IsPassword="True"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        Completed="OnPasswordCompleted" />
+
+                    <Button
+                        Text="LOGIN"
+                        Clicked="OnLoginClicked"
+                        BackgroundColor="#6C8CF5"
+                        TextColor="White"
+                        CornerRadius="15" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
