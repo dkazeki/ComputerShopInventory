@@ -5,7 +5,7 @@ namespace GenshinInventory.Services
 {
     public class DatabaseService
     {
-        private readonly string connectionString = "server=localhost;database=genshin_db;uid=root;pwd=pda31128_;";
+        private readonly string connectionString = "server=localhost;database=genshin_db;uid=root;pwd=YOUR_PASSWORD;";
 
         public MySqlConnection GetConnection()
         {
